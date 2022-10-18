@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'core' , loadChildren:()=> import('./core/core.module').then(m=>m.CoreModule)},
-  {path:'shared' , loadChildren:()=> import('./shared/shared.module').then(m=>m.SharedModule)}
+  {path:'admin' , loadChildren:()=> import('./admin/admin.module').then(m=>m.AdminModule)},
+
+ 
 
 ];
 
