@@ -29,6 +29,16 @@ const userAPIs={
 
 
     },
+    getAllUsers: async (req,res)=>{
+        try {
+            const users= await userModel.find()
+            res.json(users)
+            
+        } catch (error) {
+            return res.status(500).json({mes:error.message})
+            
+        }
+    }
 
 
 }
