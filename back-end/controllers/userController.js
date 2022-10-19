@@ -74,9 +74,24 @@ const userAPIs={
             password:hasedPassword 
 
             })
-            return res.json(updatedUser)
+            return res.json({mes:"User has been updated successfully!"})
             
 
+        } catch (error) {
+            return res.status(500).json({mes:error.message})
+            
+        }
+    },
+    deleteUser: async(req,res)=>{
+        try {
+            const userId= req.params.id
+            const deletedUser=await userModel.findByIdAndDelete({_id:userId})
+            if(!deletedUser){
+                return res.status(404).json({msg:'Not found!'})
+
+            }
+            return res.json({mes:"User has been deleted successfully!"})
+            
         } catch (error) {
             return res.status(500).json({mes:error.message})
             
