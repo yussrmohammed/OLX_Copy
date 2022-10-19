@@ -16,7 +16,7 @@ const userAPIs={
             password:hasedPassword    
 
             })
-            res.json(newUser)
+           return res.json(newUser)
             
             
 
@@ -32,7 +32,22 @@ const userAPIs={
     getAllUsers: async (req,res)=>{
         try {
             const users= await userModel.find()
-            res.json(users)
+          return  res.json(users)
+            
+        } catch (error) {
+            return res.status(500).json({mes:error.message})
+            
+        }
+    },
+    getOneUser: async (req,res)=>{
+        try {
+            const userId = req.params.id
+            const user= await userModel.findById({_id:userId})
+            if(!user)
+            {
+                 return res.status(404).json({msg:'Not found!'})
+            }
+           return res.json(user)
             
         } catch (error) {
             return res.status(500).json({mes:error.message})
