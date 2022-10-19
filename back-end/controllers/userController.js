@@ -53,7 +53,37 @@ const userAPIs={
             return res.status(500).json({mes:error.message})
             
         }
+    },
+    updateUser: async (req,res)=>{
+        try {
+            const userId= req.params.id
+            const {name,email,oldpassword,newpassword,phone,gender,role} = req.body
+            const user= await userModel.findById({_id:userId})
+            const isValidPassword= bcrypt.compareSync(oldpassword, user.password)
+            if(!isValidPassword){
+                return res.json({mes:'old password is wrong'})
+            }
+            const salt = await bcrypt.genSalt(10);
+            const hasedPassword= await bcrypt.hash(newpassword,salt)
+            const updatedUser= await user.update({
+                name:name,
+                email:email,
+                phone:phone,
+                gender:gender,
+                role:role,
+            password:hasedPassword 
+
+            })
+            return res.json(updatedUser)
+            
+
+        } catch (error) {
+            return res.status(500).json({mes:error.message})
+            
+        }
     }
+
+
 
 
 }
