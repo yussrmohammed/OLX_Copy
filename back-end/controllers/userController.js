@@ -1,5 +1,7 @@
 const userModel = require('../models/userModel')
-const bcrypt= require('bcryptjs')
+const bcrypt= require('bcryptjs');
+const { findOne } = require('../models/userModel');
+const jwt = require('../utils/jwt')
 
 const userAPIs={
     createUser: async (req,res)=>{
@@ -29,6 +31,38 @@ const userAPIs={
 
 
     },
+    logIn: async(req,res)=>{
+        try {
+            const {email,password}=req.body
+            if(!{email,password}){
+
+                return res.status(400).json({mes:"please enter email and password"})
+                }
+                const user =await userModel.findOne({email:email})
+                if(!user){
+                    return res.status(400).send('Email or password is wrong')
+
+                }
+                const pass= await bcrypt.compare(password , user.password)
+                if(!pass)
+                { return res.status(400).send('invaled password')
+                 }
+        const token = {name:user.name, userID:user._id, role:user.role}
+        jwt.sendCookieToResponse({res,user:token})
+        return res.json({token})
+
+
+
+
+            
+        } catch (error) {
+            return res.status(500).json({mes:error.message})
+            
+        }
+
+
+
+    },
     getAllUsers: async (req,res)=>{
         try {
             const users= await userModel.find()
@@ -42,6 +76,8 @@ const userAPIs={
     getOneUser: async (req,res)=>{
         try {
             const userId = req.params.id
+           
+
             const user= await userModel.findById({_id:userId})
             if(!user)
             {
@@ -59,7 +95,7 @@ const userAPIs={
             const userId= req.params.id
             const {name,email,oldpassword,newpassword,phone,gender,role} = req.body
             const user= await userModel.findById({_id:userId})
-            const isValidPassword= bcrypt.compareSync(oldpassword, user.password)
+            const isValidPassword=await bcrypt.compare(oldpassword, user.password)
             if(!isValidPassword){
                 return res.json({mes:'old password is wrong'})
             }
@@ -96,6 +132,16 @@ const userAPIs={
             return res.status(500).json({mes:error.message})
             
         }
+    },
+    logOut:(req,res)=>{
+        res.cookie('userToken','logout',{
+            httpOnly:true,
+            expires: new Date(Date.now()),
+        })
+        res.json({mes:"user has logged out"})
+
+
+
     }
 
 
