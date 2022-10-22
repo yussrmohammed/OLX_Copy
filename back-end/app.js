@@ -2,13 +2,22 @@ require('dotenv').config()
 
 
 const express= require('express')
-var cookieParser = require('cookie-parser')
 const app = express()
 require('./db/dbConnection')
-const userRouter= require('./routers/userRouter')
 
+/* ------------- Imports ------------------- */
+const cookieParser = require('cookie-parser')
+const userRouter= require('./routers/userRouter')
+const categoryRouter = require('./routers/categoryRouter')
+
+/* ------------- Using Packages ------------------- */
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET))
+
+/* ----------- Routers --------------- */
+app.use('/user', userRouter)
+app.use('/api/v1/categories',categoryRouter)
+
 
 app.get('/', (req,res)=>{
     // Cookies that have not been signed
@@ -17,11 +26,6 @@ app.get('/', (req,res)=>{
     console.log('Signed Cookies: ', req.signedCookies)
     res.status(200).send('OLX_Copy site')
 })
-
-
-app.use('/user', userRouter)
-
-
 
 app.listen(process.env.port ,
     ()=>{
