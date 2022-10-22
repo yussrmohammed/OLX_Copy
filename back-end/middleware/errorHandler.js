@@ -12,9 +12,10 @@ const errorHandlingMiddlware = async (err,req,res,next)=>{
         CustomError.statusCode = StatusCodes.BAD_REQUEST
     }
 
-    
-
-
+    if(err.name === 'CastError'){
+        CustomError.msg = `No item found with id : ${err.value}`;
+        CustomError.statusCode = 404;
+    }
 
     return res.status(CustomError.statusCode).json({msg:CustomError.msg})
 }
