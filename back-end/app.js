@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('express-async-errors');
 
 
 const express= require('express')
@@ -9,6 +10,7 @@ require('./db/dbConnection')
 const cookieParser = require('cookie-parser')
 const userRouter= require('./routers/userRouter')
 const categoryRouter = require('./routers/categoryRouter')
+const errorHandlingMiddlware = require('./middleware/errorHandler')
 
 /* ------------- Using Packages ------------------- */
 app.use(express.json());
@@ -27,6 +29,7 @@ app.get('/', (req,res)=>{
     res.status(200).send('OLX_Copy site')
 })
 
+app.use(errorHandlingMiddlware)
 app.listen(process.env.port ,
     ()=>{
         console.log('Server started at port : ' + process.env.port)
