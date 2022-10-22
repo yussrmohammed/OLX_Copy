@@ -2,6 +2,7 @@ const {StatusCodes} = require('http-status-codes')
 const Category = require('../models/categoryModel')
 
 const createCategory = async (req,res)=>{
+    throw new Error('cannot create category')
     res.status(StatusCodes.CREATED).json({msg:'create category route'})
 }
 const getAllCategories = async (req,res)=>{
