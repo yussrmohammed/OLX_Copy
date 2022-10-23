@@ -1,5 +1,7 @@
+import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private authservice:AuthService) { }
+  constructor( private authservice:AuthService, private router:Router){ }
   loginData= new FormGroup({
 
     email: new FormControl('',[Validators.required,Validators.email]) ,
@@ -19,8 +21,11 @@ export class LoginComponent implements OnInit {
   
   })
   logIn(){
-    this.authservice.LogIn(this.loginData.value).subscribe(()=>{
-      console.log('logged in')
+    this.authservice.LogIn(this.loginData.value).subscribe((res)=>{
+      const ID =res.body
+      console.log('logged in',ID)
+      
+      this.router.navigate(['core/profile',ID])
 
     })
   }
