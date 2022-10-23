@@ -49,7 +49,7 @@ const userAPIs={
                  }
         const token = {name:user.name, userID:user._id, role:user.role}
         jwt.sendCookieToResponse({res,user:token})
-        return res.json({token})
+        return res.send(token.userID)
 
 
 

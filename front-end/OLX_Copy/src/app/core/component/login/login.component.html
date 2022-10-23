@@ -1,0 +1,32 @@
+
+
+<div class="grid">
+    <div class="col"></div>
+    <div class="col">
+        <h5 class="S1"> Log In</h5>
+<form [formGroup]="loginData" (submit)="logIn()">
+ 
+
+    <div class="field">
+     
+    <span class="p-float-label">
+        <input id="float-input2" type="text" pInputText formControlName="email" [ngClass]="loginData.controls.email.invalid ? 'ng-invalid ng-dirty' :''"> 
+        <label for="float-input2">Email</label>
+    </span>
+    </div>
+    <div class="field">
+
+    <span class="p-float-label">
+        <p-password inputId="password" [toggleMask]="true" formControlName="password" [ngClass]="loginData.controls.password.invalid ? 'ng-invalid ng-dirty' :''"></p-password>
+        <label for="password" >Password</label>
+    </span>
+    </div>
+
+  
+        <button pButton pRipple type="submit" label="Log In" [disabled]="loginData.invalid" class="p-button-outlined p-button-rounded"></button>
+
+</form>
+
+    </div>
+    <div class="col"></div>
+</div>
