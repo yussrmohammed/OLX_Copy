@@ -2,21 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 
-import {TabMenuModule} from 'primeng/tabmenu';
-
-
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     ButtonModule,
-    TabMenuModule
+    InputTextModule,
+    PasswordModule,
+    RadioButtonModule
    
   ],
   exports:[
     ButtonModule,
-    TabMenuModule,
+    InputTextModule,
+    PasswordModule,
+    RadioButtonModule
   ]
 })
 export class PrimengModule { }
