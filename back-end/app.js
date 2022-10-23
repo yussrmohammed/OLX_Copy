@@ -17,7 +17,11 @@ const errorHandlingMiddlware = require('./middleware/errorHandler')
 /* ------------- Using Packages ------------------- */
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET))
-app.use(cors({origin:'http://localhost:4200'}))
+app.use(cors({origin:'http://localhost:4200',
+allowedHeaders: ['Content-Type', 'Authorization'],
+credentials: true
+
+}))
 
 /* ----------- Routers --------------- */
 app.use('/user', userRouter)
