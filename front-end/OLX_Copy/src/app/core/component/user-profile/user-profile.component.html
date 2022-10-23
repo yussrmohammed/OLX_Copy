@@ -9,7 +9,9 @@
         
 
 
-        <button pButton pRipple type="submit" label="Update"  class="p-button-outlined p-button-rounded"></button>
+        <p-confirmPopup></p-confirmPopup>
+
+<button (click)="confirm($event)" pButton icon="pi pi-check" label="Delete"></button>
         <button pButton pRipple type="submit" label="Delete"  class="p-button-outlined p-button-rounded"></button>
         
     </div>

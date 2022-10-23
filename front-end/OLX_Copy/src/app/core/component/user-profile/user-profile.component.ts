@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import {ConfirmationService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,7 +11,10 @@ import { UserService } from '../../services/user.service';
 })
 export class UserProfileComponent implements OnInit {
 currentUser:object|any
-  constructor(private userservice:UserService, private route:ActivatedRoute) {
+ 
+  constructor(private userservice:UserService, private route:ActivatedRoute,private router:Router,  private confirmationservice:ConfirmationService,
+    private  messageService:MessageService
+    ) {
 
     
    }
@@ -25,6 +30,28 @@ currentUser:object|any
    
 
   }
+  confirm(event: Event) {
+    const id =this.route.snapshot.paramMap.get('id')
+
+    this.confirmationservice.confirm({
+        target: event.target as EventTarget, 
+        message: 'Are you sure ?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          
+
+            this.userservice.deleteUser(String(id)).subscribe((res)=>{
+              console.log('deleted', res)
+              this.router.navigate(['core/login'])
+
+            })
+        },
+        reject: () => {
+
+        }
+    });
+}
+
   
 
 
