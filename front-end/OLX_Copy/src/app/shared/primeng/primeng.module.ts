@@ -6,6 +6,9 @@ import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
 
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+
+
 @NgModule({
   declarations: [],
   imports: [
@@ -14,6 +17,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     InputTextModule,
     PasswordModule,
     RadioButtonModule,
+    ConfirmPopupModule
     
    
   ],
@@ -22,6 +26,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     InputTextModule,
     PasswordModule,
     RadioButtonModule,
+    ConfirmPopupModule
     
   ]
 })
