@@ -12,14 +12,14 @@ export class UserService {
     return this.http.get("http://localhost:3000/user/" , { headers: new HttpHeaders({ 'Content-Type': 'application/json' })})
   }
   deleteUser(id:string){
-   return this.http.delete(`http://localhost:3000/user/${id}` )
+   return this.http.delete(`http://localhost:3000/user/${id}` ,{ headers: new HttpHeaders({ 'Content-Type': 'application/json' }),  withCredentials: true} )
     
   }
   getOneUser(id:string){
     return this.http.get(`http://localhost:3000/user/${id}` , { headers: new HttpHeaders({ 'Content-Type': 'application/json' }),  withCredentials: true})
   }
   updateUser(uesrdata:object,id:string){
-   return this.http.put(`http://localhost:3000/user/${id}`,uesrdata )
+   return this.http.put(`http://localhost:3000/user/${id}`,uesrdata, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }),  withCredentials: true} )
   
   }
 }

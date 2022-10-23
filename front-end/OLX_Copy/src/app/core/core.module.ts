@@ -9,6 +9,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import {ConfirmationService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -30,7 +32,9 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
   ],
   providers:[
     AuthService,
-    UserService
+    UserService,
+    ConfirmationService,
+    MessageService
   ]
 })
 export class CoreModule { }
