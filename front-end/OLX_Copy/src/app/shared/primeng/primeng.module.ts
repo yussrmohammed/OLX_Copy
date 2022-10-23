@@ -7,6 +7,7 @@ import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
 
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {DialogModule} from 'primeng/dialog';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     InputTextModule,
     PasswordModule,
     RadioButtonModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    DialogModule
     
    
   ],
@@ -26,7 +28,8 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     InputTextModule,
     PasswordModule,
     RadioButtonModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    DialogModule
     
   ]
 })
