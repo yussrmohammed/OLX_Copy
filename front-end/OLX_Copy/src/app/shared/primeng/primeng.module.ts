@@ -13,14 +13,16 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     ButtonModule,
     InputTextModule,
     PasswordModule,
-    RadioButtonModule
+    RadioButtonModule,
+    
    
   ],
   exports:[
     ButtonModule,
     InputTextModule,
     PasswordModule,
-    RadioButtonModule
+    RadioButtonModule,
+    
   ]
 })
 export class PrimengModule { }
