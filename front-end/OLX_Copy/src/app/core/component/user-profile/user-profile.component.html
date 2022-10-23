@@ -12,7 +12,94 @@
         <p-confirmPopup></p-confirmPopup>
 
 <button (click)="confirm($event)" pButton icon="pi pi-check" label="Delete"></button>
-        <button pButton pRipple type="submit" label="Delete"  class="p-button-outlined p-button-rounded"></button>
+        
+<p-dialog header="Header" [(visible)]="display" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+[draggable]="false" [resizable]="false">
+
+<div class="grid">
+    <div class="col"></div>
+    <div class="col">
+        <h5 class="S1"> SignUP</h5>
+<form [formGroup]="userData" (submit)="updateUser()">
+    <div class="field">
+    <span class="p-float-label">
+        <input id="float-input1" type="text" pInputText formControlName="name" [ngClass]="userData.controls.name.invalid ? 'ng-invalid ng-dirty' :''" > 
+        <label for="float-input1">Username</label>
+    </span>
+</div>
+
+    <div class="field">
+     
+    <span class="p-float-label">
+        <input id="float-input2" type="text" pInputText formControlName="email" [ngClass]="userData.controls.email.invalid ? 'ng-invalid ng-dirty' :''"> 
+        <label for="float-input2">Email</label>
+    </span>
+    </div>
+    <div class="field">
+
+    <span class="p-float-label">
+        <p-password inputId="oldpassword" [toggleMask]="true" formControlName="oldpassword" [ngClass]="userData.controls.oldpassword.invalid ? 'ng-invalid ng-dirty' :''"></p-password>
+        <label for="oldpassword" >Old Password</label>
+    </span>
+    </div>
+    <div class="field">
+
+        <span class="p-float-label">
+            <p-password inputId="newpassword" [toggleMask]="true" formControlName="newpassword" [ngClass]="userData.controls.newpassword.invalid ? 'ng-invalid ng-dirty' :''"></p-password>
+            <label for="newpassword" >Old Password</label>
+        </span>
+        </div>
+    <div class="field">
+
+    <span class="p-float-label">
+        <input id="float-input3" type="text" pInputText formControlName="phone" [ngClass]="userData.controls.phone.invalid ? 'ng-invalid ng-dirty' :''" > 
+        <label for="float-input3">Phone</label>
+    </span>
+    </div>
+    <h5>Gender</h5>
+    <div class="formgroup-inline">
+    
+    <div class="field-radiobutton">
+        <p-radioButton name="gender" value="male"  inputId="gender1" formControlName="gender"></p-radioButton>
+        <label for="gender1">male</label>
+    </div>
+    
+    <div class="field-radiobutton">
+        <p-radioButton name="gender" value="female"  inputId="gender2" formControlName="gender"></p-radioButton>
+        <label for="gender2">Female</label>
+    </div>
+    </div>
+    <div class="formgroup-inline">
+    
+        <div class="field-radiobutton">
+            <p-radioButton name="role" value="user"  inputId="role1" formControlName="role"></p-radioButton>
+            <label for="role1">User</label>
+        </div>
+        
+        <div class="field-radiobutton">
+            <p-radioButton name="role" value="admin"  inputId="role2" formControlName="role"></p-radioButton>
+            <label for="role2">Admin</label>
+        </div>
+        </div>
+
+<p-button  type="submit" label="Update" styleClass="p-button-text"></p-button>
+</form>
+
+    </div>
+    <div class="col"></div>
+</div>
+
+
+
+    <ng-template pTemplate="footer">
+    <p-button (click)="display=false"  label="cancel" styleClass="p-button-text"></p-button>
+    
+    </ng-template>
+</p-dialog>
+        <button type="button" (click)="showDialog()" pButton pRipple label="Update" class="p-button-outlined p-button-rounded"></button>
+       
+
+
         
     </div>
     <div class="col">

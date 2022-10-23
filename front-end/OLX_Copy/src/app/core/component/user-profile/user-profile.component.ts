@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import {ConfirmationService} from 'primeng/api';
-import { MessageService } from 'primeng/api';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -11,14 +12,44 @@ import { MessageService } from 'primeng/api';
 })
 export class UserProfileComponent implements OnInit {
 currentUser:object|any
- 
+userData= new FormGroup({
+  name:new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z].*')]),
+  email: new FormControl('',[Validators.required,Validators.email]) ,
+  phone: new FormControl(0,[Validators.maxLength(11),Validators.minLength(11),Validators.pattern("^[0-9]*$"),Validators.required]),
+
+  gender: new FormControl('',Validators.required),
+  oldpassword: new FormControl('',[Validators.minLength(8),Validators.required]),
+  newpassword: new FormControl('',[Validators.minLength(8),Validators.required]),
+  role: new FormControl('',Validators.required),
+
+    
+  
+  
+  })
   constructor(private userservice:UserService, private route:ActivatedRoute,private router:Router,  private confirmationservice:ConfirmationService,
-    private  messageService:MessageService
+    
     ) {
 
     
    }
+   display: boolean = false;
 
+   showDialog() {
+       this.display = true;
+
+
+    
+        this.userData.setValue({
+          name: this.currentUser.name,
+          email: this.currentUser.email,
+          phone: this.currentUser.phone,
+          gender: this.currentUser.gender,
+          oldpassword: null,
+          newpassword: null,
+          role:this.currentUser.role
+        })
+       
+   }
 
   ngOnInit(): void {
         const id =this.route.snapshot.paramMap.get('id')
@@ -50,6 +81,15 @@ currentUser:object|any
 
         }
     });
+}
+updateUser(){
+  const id =this.route.snapshot.paramMap.get('id')
+
+  this.userservice.updateUser(this.userData.value, String(id)).subscribe((res=>{
+    window.location.reload()
+  }))
+
+
 }
 
   
