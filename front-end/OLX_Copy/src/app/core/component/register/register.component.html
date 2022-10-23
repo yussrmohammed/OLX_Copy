@@ -1,0 +1,66 @@
+
+<div class="grid">
+    <div class="col"></div>
+    <div class="col">
+        <h5 class="S1"> SignUP</h5>
+<form [formGroup]="registerData" (submit)="register()">
+    <div class="field">
+    <span class="p-float-label">
+        <input id="float-input1" type="text" pInputText formControlName="name" [ngClass]="registerData.controls.name.invalid ? 'ng-invalid ng-dirty' :''" > 
+        <label for="float-input1">Username</label>
+    </span>
+</div>
+
+    <div class="field">
+     
+    <span class="p-float-label">
+        <input id="float-input2" type="text" pInputText formControlName="email" [ngClass]="registerData.controls.email.invalid ? 'ng-invalid ng-dirty' :''"> 
+        <label for="float-input2">Email</label>
+    </span>
+    </div>
+    <div class="field">
+
+    <span class="p-float-label">
+        <p-password inputId="password" [toggleMask]="true" formControlName="password" [ngClass]="registerData.controls.password.invalid ? 'ng-invalid ng-dirty' :''"></p-password>
+        <label for="password" >Password</label>
+    </span>
+    </div>
+    <div class="field">
+
+    <span class="p-float-label">
+        <input id="float-input3" type="text" pInputText formControlName="phone" [ngClass]="registerData.controls.phone.invalid ? 'ng-invalid ng-dirty' :''" > 
+        <label for="float-input3">Phone</label>
+    </span>
+    </div>
+    <h5>Gender</h5>
+    <div class="formgroup-inline">
+    
+    <div class="field-radiobutton">
+        <p-radioButton name="gender" value="male"  inputId="gender1" formControlName="gender"></p-radioButton>
+        <label for="gender1">male</label>
+    </div>
+    
+    <div class="field-radiobutton">
+        <p-radioButton name="gender" value="female"  inputId="gender2" formControlName="gender"></p-radioButton>
+        <label for="gender2">Female</label>
+    </div>
+    </div>
+    <div class="formgroup-inline">
+    
+        <div class="field-radiobutton">
+            <p-radioButton name="role" value="user"  inputId="role1" formControlName="role"></p-radioButton>
+            <label for="role1">User</label>
+        </div>
+        
+        <div class="field-radiobutton">
+            <p-radioButton name="role" value="admin"  inputId="role2" formControlName="role"></p-radioButton>
+            <label for="role2">Admin</label>
+        </div>
+        </div>
+        <button pButton pRipple type="submit" label="Sign UP" [disabled]="registerData.invalid" class="p-button-outlined p-button-rounded"></button>
+
+</form>
+
+    </div>
+    <div class="col"></div>
+</div>
