@@ -16,7 +16,7 @@ export class UserService {
     
   }
   getOneUser(id:string){
-    return this.http.get(`http://localhost:3000/user/${id}` , { headers: new HttpHeaders({ 'Content-Type': 'application/json' })})
+    return this.http.get(`http://localhost:3000/user/${id}` , { headers: new HttpHeaders({ 'Content-Type': 'application/json' }),  withCredentials: true})
   }
   updateUser(uesrdata:object,id:string){
    return this.http.put(`http://localhost:3000/user/${id}`,uesrdata )

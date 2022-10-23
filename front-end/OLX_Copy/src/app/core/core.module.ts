@@ -7,22 +7,30 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+
+
 
 
 @NgModule({
   declarations: [
     CoreComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserProfileComponent
+    
   ],
   imports: [
     CommonModule,
     CoreRoutingModule,
     SharedModule,
     
+    
   ],
   providers:[
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class CoreModule { }
